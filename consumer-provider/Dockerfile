@@ -11,4 +11,4 @@ ENV VERSION ${VERSION:-v1}
 COPY --from=maven-builder /builder/${MODULE}/target/${MODULE}-*.jar /app/
 EXPOSE 8001 8002
 
-ENTRYPOINT ["/bin/bash", "-c", "java", "-jar", ${MODULE}-*.jar]
+ENTRYPOINT ["java", "-jar", "${MODULE}-*.jar"]
