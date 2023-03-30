@@ -4,7 +4,7 @@ WORKDIR /builder
 COPY . /builder
 RUN mvn package -Dmaven.test.skip=true
 
-FROM java:8
+FROM openjdk:8
 WORKDIR /app
 ARG MODULE VERSION
 ENV VERSION ${VERSION:-v1}
