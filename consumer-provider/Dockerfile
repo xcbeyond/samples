@@ -1,7 +1,6 @@
 FROM maven:3.8.6-jdk-8 AS maven-builder
 LABEL maintainer=xcbeyond
 WORKDIR /builder
-ARG MODULE
 COPY . /builder
 RUN mvn package -Dmaven.test.skip=true
 
