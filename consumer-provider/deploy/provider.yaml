@@ -34,5 +34,6 @@ spec:
       - name: provider
         image: xcbeyond/provider:v1
         imagePullPolicy: IfNotPresent
+        commond: ["java", "-jar", "provider-0.0.1.jar"]
         ports:
         - containerPort: 8001
