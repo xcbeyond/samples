@@ -14,9 +14,10 @@ jobs:
 
     - name: Build image
       run: |
-        docker build -t xcbeyond/consumer:v1 --build-arg MOUDLE=consumer -f ./consumer-provider/Dockerfile .
-        docker build -t xcbeyond/provider:v1 --build-arg MOUDLE=provider -f ./consumer-provider/Dockerfile .
-        docker build -t xcbeyond/provider:v2 --build-arg MOUDLE=provider --build-arg VERSION=v2 -f ./consumer-provider/Dockerfile .
+        cd consumer-provider
+        docker build -t xcbeyond/consumer:v1 --build-arg MOUDLE=consumer .
+        docker build -t xcbeyond/provider:v1 --build-arg MOUDLE=provider .
+        docker build -t xcbeyond/provider:v2 --build-arg MOUDLE=provider --build-arg VERSION=v2 .
 
     - name: Push image
       run: |
