@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: provider
-        image: xcbeyond/provider:latest
+        image: xcbeyond/provider:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8001
