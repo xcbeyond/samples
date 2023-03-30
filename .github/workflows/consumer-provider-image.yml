@@ -1,0 +1,23 @@
+
+name: consumer-provider Image CI
+
+on: workflow_dispatch
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Login dockerhub registry
+      run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u xcbeyond --password-stdin
+
+    - name: Build image
+      run: |
+        docker build -t xcbeyond/consumer:v1 --build-arg MOUDLE=consumer -f ./consumer-provider/Dockerfile .
+        docker build -t xcbeyond/provider:v1 --build-arg MOUDLE=provider -f ./consumer-provider/Dockerfile .
+        docker build -t xcbeyond/provider:v2 --build-arg MOUDLE=provider --build-arg VERSION=v2 -f ./consumer-provider/Dockerfile .
+
+    - name: Push image
+      run: |
+        docker push xcbeyond/consumer:v1 xcbeyond/provider:v1 xcbeyond/provider:v2

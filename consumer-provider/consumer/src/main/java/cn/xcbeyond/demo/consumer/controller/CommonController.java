@@ -19,10 +19,11 @@ public class CommonController {
 
   @GetMapping("/ping")
   public String ping() throws UnknownHostException {
+    String version = System.getenv("VERSION");
     InetAddress ia = InetAddress.getLocalHost();
     String hostname = ia.getHostName();
     String ip = ia.getHostAddress();
-    return "consumer, hostname: " + hostname + ", ip: " + ip;
+    return "consumer, version: " + version + ", hostname: " + hostname + ", ip: " + ip;
   }
 
   @GetMapping("/hello")

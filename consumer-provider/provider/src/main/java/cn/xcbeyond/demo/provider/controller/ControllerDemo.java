@@ -2,7 +2,6 @@ package cn.xcbeyond.demo.provider.controller;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +27,6 @@ public class ControllerDemo {
 
   private String info() throws UnknownHostException {
     String version = System.getenv("VERSION");
-    if (StringUtils.isEmpty(version)) {
-      version = "v1";
-    }
     InetAddress ia = InetAddress.getLocalHost();
     String hostname = ia.getHostName();
     String ip = ia.getHostAddress();
