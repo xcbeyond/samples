@@ -21,4 +21,6 @@ jobs:
 
     - name: Push image
       run: |
-        docker push xcbeyond/consumer:v1 xcbeyond/provider:v1 xcbeyond/provider:v2
+        docker push xcbeyond/consumer:v1
+        docker push xcbeyond/provider:v1
+        docker push xcbeyond/provider:v2
