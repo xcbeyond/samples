@@ -54,6 +54,6 @@ spec:
       - name: consumer
         image: xcbeyond/consumer:v1
         imagePullPolicy: IfNotPresent
-        commond: ["java", "-jar", "consumer-0.0.1.jar"]
+        command: ["java", "-jar", "consumer-0.0.1.jar"]
         ports:
         - containerPort: 8001
