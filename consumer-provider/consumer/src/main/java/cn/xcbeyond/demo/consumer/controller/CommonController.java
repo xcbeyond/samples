@@ -15,26 +15,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/consumer")
 public class CommonController {
 
-  @Autowired public CommonService commonService;
+  @Autowired
+  public CommonService commonService;
 
-  @GetMapping("/ping")
+  @GetMapping("/info")
   public String ping() throws UnknownHostException {
     String version = System.getenv("VERSION");
     InetAddress ia = InetAddress.getLocalHost();
-    String hostname = ia.getHostName();
+    String instanceId = ia.getHostName();
     String ip = ia.getHostAddress();
-    return "consumer, version: " + version + ", hostname: " + hostname + ", ip: " + ip;
+    return "from consumer, version: " + version + ", instance: " + instanceId + ", ip: " + ip;
   }
 
   @GetMapping("/hello")
   public String hello() {
-    String result;
-    try {
-      result = commonService.hello();
-    } catch (Exception e) {
-      result = "Sorry, provider are unavailable, caused by " + e.getMessage();
-      e.printStackTrace();
-    }
-    return result;
+    return commonService.hello();
+  }
+
+  /**
+   * 模拟异常
+   *
+   * @return
+   */
+  @GetMapping("/error")
+  public int error() {
+    return 1 / 0;
   }
 }

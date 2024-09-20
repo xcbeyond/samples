@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/provider")
 public class ControllerDemo {
 
-  @GetMapping("/ping")
+  @GetMapping("/info")
   public String ping() throws UnknownHostException {
     return info();
   }
@@ -28,8 +28,8 @@ public class ControllerDemo {
   private String info() throws UnknownHostException {
     String version = System.getenv("VERSION");
     InetAddress ia = InetAddress.getLocalHost();
-    String hostname = ia.getHostName();
+    String instanceId = ia.getHostName();
     String ip = ia.getHostAddress();
-    return "provider, version: " + version + ", hostname: " + hostname + ", ip: " + ip;
+    return "from provider, version: " + version + ", instance: " + instanceId + ", ip: " + ip;
   }
 }

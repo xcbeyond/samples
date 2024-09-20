@@ -5,31 +5,11 @@ metadata:
   labels:
     app: consumer
 spec:
-  ports:
-  - port: 8001
-    name: http
   selector:
     app: consumer
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    app: consumer
-  name: consumer-config
-data:
-  bootstrap.yaml: |-
-    server:
-      port: 8001
-
-    spring:
-      application:
-        name: consumer
-      cloud:
-        nacos:
-          discovery:
-            enabled: true
-            server-addr: nacos-headless:8848
+  ports:
+    - port: 8001
+      name: http
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,9 +31,9 @@ spec:
         version: v1
     spec:
       containers:
-      - name: consumer
-        image: xcbeyond/consumer:v1
-        imagePullPolicy: IfNotPresent
-        command: ["java", "-jar", "consumer-0.0.1.jar"]
-        ports:
-        - containerPort: 8001
+        - name: consumer
+          image: xcbeyond/consumer:v1
+          imagePullPolicy: IfNotPresent
+          command: [ "java", "-jar", "consumer.jar" ]
+          ports:
+            - containerPort: 8001

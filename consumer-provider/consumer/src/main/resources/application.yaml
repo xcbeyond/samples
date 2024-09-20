@@ -1,0 +1,9 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: consumer
+
+provider:
+  address: http://provider:8002

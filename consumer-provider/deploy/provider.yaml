@@ -5,11 +5,11 @@ metadata:
   labels:
     app: provider
 spec:
-  ports:
-  - port: 8001
-    name: http
   selector:
     app: provider
+  ports:
+    - port: 8002
+      name: http
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,9 +31,9 @@ spec:
         version: v1
     spec:
       containers:
-      - name: provider
-        image: xcbeyond/provider:v1
-        imagePullPolicy: IfNotPresent
-        command: ["java", "-jar", "provider-0.0.1.jar"]
-        ports:
-        - containerPort: 8001
+        - name: provider
+          image: xcbeyond/provider:v1
+          imagePullPolicy: IfNotPresent
+          command: [ "java", "-jar", "provider.jar" ]
+          ports:
+            - containerPort: 8002
